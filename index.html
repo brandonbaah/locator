@@ -43,8 +43,11 @@
 
   <script >
 
+    // Listen for submit
     document.querySelector('#zipForm').addEventListener('submit', getLocationInfo);
 
+    // Listen for delete
+    document.querySelector('body').addEventListener('click', deleteLocation);
     function getLocationInfo(e){
       const zip = document.querySelector('.zip').value;
 
@@ -101,7 +104,7 @@
       e.preventDefault();
     }
 
-
+    // SHow check or remove icon
     function showIcon(icon){
       // Clear all icons
       document.querySelector('.icon-remove').style.display = 'none';
@@ -110,6 +113,15 @@
       //Show the right icon
 
       document.querySelector(`.icon-${icon}`).style.display = 'inline-flex';
+    }
+
+    // Delete location box
+    function deleteLocation(e){
+      if(e.target.className == 'delete'){
+          document.querySelector('.is-primary').remove();
+          document.querySelector('.icon-check').style.display = 'none';
+          document.querySelector('.zip').value = '';
+      }
     }
 
 
